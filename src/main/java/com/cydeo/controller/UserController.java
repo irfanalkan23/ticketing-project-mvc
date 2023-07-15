@@ -12,7 +12,7 @@ public class UserController {
     @GetMapping("/create")
     public String createUser(Model model){
         model.addAttribute("user",new UserDTO());
-//        model.addAttribute("roles",findAll());
+//        model.addAttribute("roles",bringMeListOfRoles());      //bring me all roles from DB
         return "user/create";
     }
 }
