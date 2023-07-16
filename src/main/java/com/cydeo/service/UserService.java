@@ -5,6 +5,8 @@ import com.cydeo.dto.UserDTO;
 import java.util.List;
 
 public interface UserService extends CrudService<UserDTO,String> {
+    //String -> because email (userName) is unique identifier
+
 //    UserDTO save(UserDTO user);
 //    UserDTO findById(String username);  // userName as id
 //    List<UserDTO> findAll();

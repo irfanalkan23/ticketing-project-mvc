@@ -7,6 +7,5 @@ public interface CrudService<T, ID> {
     T save(T object);
     List<T> findAll();
     T findById(ID id);  //ID : unique identifier; String, Long
-    void delete(T object);
     void deleteById(ID id);
 }
