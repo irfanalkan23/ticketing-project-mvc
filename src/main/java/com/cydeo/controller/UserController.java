@@ -1,14 +1,13 @@
 package com.cydeo.controller;
 
-import com.cydeo.bootstrap.DataGenerator;
-import com.cydeo.dto.RoleDTO;
 import com.cydeo.dto.UserDTO;
 import com.cydeo.service.RoleService;
 import com.cydeo.service.UserService;
-import com.cydeo.service.impl.RoleServiceImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -29,5 +28,15 @@ public class UserController {
         model.addAttribute("roles", roleService.findAll());      //bring me all roles from DB
         model.addAttribute("users", userService.findAll());
         return "user/create";
+    }
+
+    @PostMapping("/create")
+    public String insertUser(@ModelAttribute("user") UserDTO user, Model model){
+
+        // I need to add the data from the form into the database (map)
+        userService.save(user);
+
+//        return "/user/create";
+        return "redirect:/user/create";
     }
 }
