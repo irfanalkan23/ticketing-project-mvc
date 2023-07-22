@@ -49,8 +49,8 @@ public class UserController {
         return "/user/update";
     }
 
-    @PostMapping("/update/{username}")
-    public String updateUser(@PathVariable("username") String username, UserDTO user){
+    @PostMapping("/update")
+    public String updateUser(UserDTO user){
         // New version of Spring does NOT need @ModelAttribute("user")
 
         userService.update(user);
