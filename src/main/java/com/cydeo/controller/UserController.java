@@ -29,6 +29,7 @@ public class UserController {
 
     @PostMapping("/create")
     public String insertUser(@ModelAttribute("user") UserDTO user, Model model){
+        // New version of Spring does NOT need @ModelAttribute("user")
 
         // I need to add the data from the form into the database (map)
         userService.save(user);
@@ -46,6 +47,14 @@ public class UserController {
         model.addAttribute("users", userService.findAll());
 
         return "/user/update";
+    }
+
+    @PostMapping("/update/{username}")
+    public String updateUser(@PathVariable("username") String username, UserDTO user){
+        // New version of Spring does NOT need @ModelAttribute("user")
+
+        userService.update(user);
+        return "redirect:/user/create";
     }
 
 

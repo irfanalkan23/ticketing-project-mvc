@@ -8,4 +8,6 @@ public interface CrudService<T, ID> {
     List<T> findAll();
     T findById(ID id);  //ID : unique identifier; String, Long
     void deleteById(ID id);
+
+    void update(T object);
 }
