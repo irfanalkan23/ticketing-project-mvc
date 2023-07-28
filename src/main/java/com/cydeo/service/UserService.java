@@ -7,6 +7,9 @@ import java.util.List;
 public interface UserService extends CrudService<UserDTO,String> {
     //String -> because email (userName) is unique identifier
 
+    List<UserDTO> findManagers();
+
+
 //    UserDTO save(UserDTO user);
 //    UserDTO findById(String username);  // userName as id
 //    List<UserDTO> findAll();

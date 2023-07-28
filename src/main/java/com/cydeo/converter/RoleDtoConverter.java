@@ -8,12 +8,12 @@ import org.springframework.stereotype.Component;
 
 @Component
 @ConfigurationPropertiesBinding     //Spring will run this convert() method automatically whenever it needs it
-public class RoleDTOConverter implements Converter<String, RoleDTO> {
+public class RoleDtoConverter implements Converter<String, RoleDTO> {
 
     RoleService roleService;
 
     //injection. autowiring.
-    public RoleDTOConverter(RoleService roleService) {
+    public RoleDtoConverter(RoleService roleService) {
         this.roleService = roleService;
     }
 
