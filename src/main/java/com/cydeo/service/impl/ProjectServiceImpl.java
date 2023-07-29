@@ -24,6 +24,14 @@ public class ProjectServiceImpl extends AbstractMapService<ProjectDTO,String> im
 
     @Override
     public void update(ProjectDTO object) {
+
+        //since the user is not entering projectStatus in the Project Create form,
+        //update() method is trying to Update the object.projectStatus with NULL information,
+        //and "enum Status" is trying to assign the "value" of NULL, which gives error!
+        //iot fix this, we assign the current object.projectStatus (in map) information as the projectStatus:
+        if (object.getProjectStatus()==null){
+            object.setProjectStatus(findById(object.getProjectCode()).getProjectStatus());
+        }
         super.update(object.getProjectCode(),object);
     }
 
