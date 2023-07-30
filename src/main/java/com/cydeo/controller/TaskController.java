@@ -48,4 +48,30 @@ public class TaskController {
         taskService.deleteById(taskId);
         return "redirect:/task/create";
     }
+
+    @GetMapping("/update/{taskId}")
+    public String editTask(@PathVariable("taskId") Long taskId, Model model){
+        model.addAttribute("task",taskService.findById(taskId));
+        model.addAttribute("projects", projectService.findAll());
+        model.addAttribute("employees", userService.findEmployees());
+        model.addAttribute("tasks", taskService.findAll());
+        return "task/update";
+    }
+
+//    @PostMapping("/update/{taskId}")
+//    public String updateTask(@PathVariable("taskId") Long taskId, TaskDTO task) {
+//        task.setId(taskId);
+//        taskService.update(task);
+//        return "redirect:/task/create";
+//    }
+
+    @PostMapping("/update/{id}")
+    //we didn't pass {id} in UserController and ProjectController, because user was entering the unique identifier
+    //in TaskController, and also when working with database, we need to pass {id} unique identifier here
+    // !!! if we use the exact same unique identifier name ("id" in TaskDTO), we don't need @PathVariable !!!
+    //Spring Boot says "I know where to set ("TaskDTO task" param below)
+    public String updateTask(TaskDTO task){
+        taskService.update(task);
+        return "redirect:/task/create";
+    }
 }
